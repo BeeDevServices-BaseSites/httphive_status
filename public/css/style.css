@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f6f0;
+  color: #111;
+  margin: 0;
+  padding: 2rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.service-group {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.monitor {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding: 0.75rem 0;
+}
+
+.status.up {
+  color: green;
+}
+
+.status.down {
+  color: red;
+}
+
+.status.unknown {
+  color: #777;
+}
+
+.error {
+  color: red;
+}
