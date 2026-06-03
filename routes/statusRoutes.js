@@ -25,10 +25,6 @@ router.get("/", async (req, res) => {
                 };
             });
 
-        console.log("CONFIG GROUPS:", config.groups);
-        console.log("CONFIG SERVICE GROUPS:", config.serviceGroups);
-        console.log("CONFIG MONITORS:", config.monitors);
-        console.log("MERGED MONITORS:", mergedMonitors);
         res.render("index", {
             title: "HTTPHive Status",
             groups: config.groups,
