@@ -19,6 +19,7 @@ block content
           each monitor in monitors.filter(m => m.serviceGroup === serviceGroup.id && m.public)
             .monitor
               strong= monitor.displayName
-              span.status(class=monitor.status.toLowerCase())= monitor.status
-              if monitor.url
-                a(href=monitor.url target="_blank") Visit
+              div.statusCard
+                span.status(class=monitor.status.toLowerCase())= monitor.status
+                if monitor.url
+                  a(href=monitor.url target="_blank") Visit

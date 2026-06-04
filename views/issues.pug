@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    h1 Known Issues
+
+    p These are visible reported issues currently being tracked by BeeDev Services.
+
+    if error
+        p.error= error
+
+    if issues.length === 0
+        p No known issues are currently listed.
+    else
+        each issue in issues
+            .service-group
+                h3= issue.issue_title
+                p
+                    strong Issue ID:
+                    |  #{issue.issue_id}
+                p
+                    strong Client:
+                    |  #{issue.companywebsite}
+                p
+                    strong Status:
+                    |  #{issue.status}
+                p
+                    strong Priority:
+                    |  #{issue.priority}
+                if issue.last_updated
+                    p
+                        strong Last Updated:
+                        |  #{issue.last_updated}
+                if issue.resolution_notes
+                    p
+                        strong Notes:
+                        |  #{issue.resolution_notes}

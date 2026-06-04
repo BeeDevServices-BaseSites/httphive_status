@@ -3,6 +3,7 @@ const router = express.Router();
 
 const { getUptimeRobotMonitors } = require("../services/uptimeRobotService");
 const { getMonitorConfig } = require("../services/configService");
+const { getIssues } = require("../services/issueService");
 
 router.get("/", async (req, res) => {
     try {
@@ -25,10 +26,6 @@ router.get("/", async (req, res) => {
                 };
             });
 
-        console.log("CONFIG GROUPS:", config.groups);
-        console.log("CONFIG SERVICE GROUPS:", config.serviceGroups);
-        console.log("CONFIG MONITORS:", config.monitors);
-        console.log("MERGED MONITORS:", mergedMonitors);
         res.render("index", {
             title: "HTTPHive Status",
             groups: config.groups,
@@ -48,6 +45,32 @@ router.get("/", async (req, res) => {
             lastUpdated: new Date()
         });
     }
+});
+
+router.get("/issues", async (req, res) => {
+    try {
+        const issues = await getIssues();
+
+        res.render("issues", {
+            title: "Known Issues",
+            issues
+        });
+    } catch (error) {
+        console.error(error);
+
+        res.render("issues", {
+            title: "Known Issues",
+            issues: [],
+            error: "Unable to load reported issues right now."
+        });
+    }
+});
+
+router.get("/report", (req, res) => {
+    res.render("report", {
+        title: "Report an Issue",
+        formUrl: process.env.REPORT_FORM_URL
+    });
 });
 
 module.exports = router;
